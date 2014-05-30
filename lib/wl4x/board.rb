@@ -21,7 +21,9 @@ private
   def validCoordinates?(row, col)
     if (row.odd? and col == @width-1) then
       return false
-    elsif (col < @width) and (row < @height) then
+    elsif (row < 0) or (col < 0) then
+      return false
+    elsif (row < @height) and (col < @width) then
       return true
     end
     

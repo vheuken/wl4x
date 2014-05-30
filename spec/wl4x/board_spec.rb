@@ -17,10 +17,15 @@ describe Board do
     end
     
     it 'should throw error if hex is not on board' do
-      expect { @board.get_hex(0, @board.width) }.to raise_error
-      expect { @board.get_hex(@board.height, 0) }.to raise_error
-      expect { @board.get_hex(@board.height, @board.width) }.to raise_error
-      expect { @board.get_hex(1, @board.width-1)}.to raise_error
+      expect { @board.get_hex(0, @board.width) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(@board.height, 0) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(@board.height, @board.width) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(1, @board.width-1) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(-1, 0) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(0, -1) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(-1, -1) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(0, @board.width) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(@board.height, -1) }.to raise_error(ArgumentError)
     end
   end
 end
