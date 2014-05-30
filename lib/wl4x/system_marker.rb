@@ -1,0 +1,3 @@
+class SystemMarker < PlayingPiece
+  
+end

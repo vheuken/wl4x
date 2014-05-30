@@ -1,0 +1,3 @@
+class Homeworld < PlayingPiece
+  
+end
