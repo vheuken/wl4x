@@ -17,7 +17,6 @@ describe Board do
     end
     
     it 'should throw error if hex is not on board' do
-      puts @board.height
       expect { @board.get_hex(0, @board.width) }.to raise_error
       expect { @board.get_hex(@board.height, 0) }.to raise_error
       expect { @board.get_hex(@board.height, @board.width) }.to raise_error
