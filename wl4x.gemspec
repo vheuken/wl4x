@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Game logic for Weblock, which uses the rules from Space Empires 4X board game"
   spec.description   = ""
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = "zlib"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
