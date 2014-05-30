@@ -19,7 +19,9 @@ class Board
   
 private 
   def validCoordinates?(row, col)
-    if ((col < @width) and (row < @height)) then
+    if (row.odd? and col == @width-1) then
+      return false
+    elsif (col < @width) and (row < @height) then
       return true
     end
     
