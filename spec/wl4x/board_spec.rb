@@ -6,10 +6,6 @@ describe Board do
   end
   
   describe '#initialize' do
-    pending 'adds homeworlds to board' do
-
-    end
-    
     it 'adds system markers where there are no homeworlds' do
       for row in 0..@board.height-1 do
         for col in 0..@board.width-1 do
@@ -40,13 +36,21 @@ describe Board do
       
       expect { @board.get_hex(0, width) }.to raise_error(ArgumentError)
       expect { @board.get_hex(height, 0) }.to raise_error(ArgumentError)
-      expect { @board.get_hex(height, width) }.to raise_error(ArgumentError)
-      expect { @board.get_hex(1, width-1) }.to raise_error(ArgumentError)
       expect { @board.get_hex(-1, 0) }.to raise_error(ArgumentError)
       expect { @board.get_hex(0, -1) }.to raise_error(ArgumentError)
       expect { @board.get_hex(-1, -1) }.to raise_error(ArgumentError)
       expect { @board.get_hex(0, width) }.to raise_error(ArgumentError)
       expect { @board.get_hex(height, -1) }.to raise_error(ArgumentError)
+      expect { @board.get_hex(height, width) }.to raise_error(ArgumentError)
+    end
+    
+    it 'should have width-1 columns in odd numbered rows' do
+      width  = @board.width
+      height = @board.height
+      
+      for row in (1..height).step(2) do
+        expect { @board.get_hex(row, width-1) }.to raise_error(ArgumentError)
+      end
     end
   end
 end
