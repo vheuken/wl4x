@@ -8,7 +8,7 @@ class Board
     @height = HEX_MAP_HEIGHT
     @width  = HEX_MAP_WIDTH
     
-    @playing_pieces = Array.new
+    @playing_pieces = []
     
     initialize_system_markers
   end
