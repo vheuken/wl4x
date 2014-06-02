@@ -18,9 +18,15 @@ class Board
       raise ArgumentError.new("Invalid coordinates!")
     end
     
-    @playing_pieces.uniq do |piece|
-      piece.row == row and piece.col == col
+    hex = []
+    
+    @playing_pieces.each do |piece|
+      if (piece.row == row) and (piece.col == col)
+        hex.push(piece)
+      end
     end
+    
+    hex
   end
   
 private 
@@ -37,8 +43,8 @@ private
   end
   
   def initialize_system_markers
-    @height-1.times do |row|
-      @width-1.times do |col|
+    (@height-1).times do |row|
+      (@width-1).times do |col|
         if !(row.odd? and col == @width-1)
           if get_hex(row, col).empty?
             @playing_pieces.push(SystemMarker.new(row, col))
