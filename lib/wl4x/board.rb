@@ -18,15 +18,9 @@ class Board
       raise ArgumentError.new("Invalid coordinates!")
     end
     
-    hex = []
-    
-    @playing_pieces.each do |piece|
-      if (piece.row == row) and (piece.col == col) then
-        hex.push(piece)
-      end
+    @playing_pieces.uniq do |piece|
+      (piece.row == row) and (piece.col == col)
     end
-    
-    hex
   end
   
 private 
