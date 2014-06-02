@@ -37,8 +37,8 @@ private
   end
   
   def initialize_system_markers
-    for row in 0..@height-1 do
-      for col in 0..@width-1 do
+    @height-1.times do |row|
+      @width-1.times do |col|
         if !(row.odd? and col == @width-1) then
           if get_hex(row, col).empty? then
             @playing_pieces.push(SystemMarker.new(row, col))
