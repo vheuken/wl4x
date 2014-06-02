@@ -7,8 +7,8 @@ describe Board do
   
   describe '#initialize' do
     it 'adds system markers where there are no homeworlds' do
-      for row in 0..@board.height-1 do
-        for col in 0..@board.width-1 do
+      @board.height-1.times do |row|
+        @board.width-1.times do |col|
           if !(row.odd? and col == @board.width-1) then
            if @board.get_hex(row, col)[0].class != Homeworld then
              @board.get_hex(row, col)[0].should be_a(SystemMarker)
@@ -21,8 +21,8 @@ describe Board do
   
   describe '#get_hex' do
     it 'return array of counters in given hex' do
-      for row in 0..@board.height-1 do
-        for col in 0..@board.width-1 do
+      @board.height-1.times do |row|
+        @board.width-1.times do |col|
           if !(row.odd? and col == @board.width-1) then
            @board.get_hex(row, col).should be_a(Array)
           end
@@ -48,7 +48,7 @@ describe Board do
       width  = @board.width
       height = @board.height
       
-      for row in (1..height).step(2) do
+      (1..height).step(2).each do |row|
         expect { @board.get_hex(row, width-1) }.to raise_error(ArgumentError)
       end
     end
