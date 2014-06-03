@@ -11,7 +11,7 @@ describe Board do
         (@board.width-1).times do |col|
           if !(row.odd? and col == @board.width-1)
             if @board.get_hex(row, col)[0].class != Homeworld
-              @board.get_hex(row, col)[0].should be_a(SystemMarker)
+              expect(@board.get_hex(row, col)[0]).to be_a(SystemMarker)
             end
           end
         end
@@ -26,11 +26,12 @@ describe Board do
           if !(row.odd? and col == @board.width-1)
             hex = @board.get_hex(row, col)
            
-            hex.should be_a(Array)
+            expect(hex).to be_a(Array)
             
+            # confirm that pieces are in the correct hex
             hex.each do |piece|
-              piece.row.should eql(row)
-              piece.col.should eql(col)
+              expect(piece.row).to eql(row)
+              expect(piece.col).to eql(col)
             end
           end
         end
