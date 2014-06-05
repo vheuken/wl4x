@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Board do
+describe Wl4x::Board do
   before (:all) do
-    @board = Board.new
+    @board = Wl4x::Board.new
   end
   
   describe '#initialize' do
@@ -10,8 +10,8 @@ describe Board do
       (@board.height-1).times do |row|
         (@board.width-1).times do |col|
           if !(row.odd? and col == @board.width-1)
-            if @board.get_hex(row, col)[0].class != Homeworld
-              expect(@board.get_hex(row, col)[0]).to be_a(SystemMarker)
+            if @board.get_hex(row, col)[0].class != Wl4x::Homeworld
+              expect(@board.get_hex(row, col)[0]).to be_a(Wl4x::SystemMarker)
             end
           end
         end

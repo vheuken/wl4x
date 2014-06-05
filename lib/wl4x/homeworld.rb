@@ -1,3 +1,5 @@
-class Homeworld < PlayingPiece
-  
+module Wl4x
+  class Homeworld < PlayingPiece
+    
+  end
 end

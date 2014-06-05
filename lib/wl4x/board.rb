@@ -1,53 +1,55 @@
-HEX_MAP_WIDTH  = 13
-HEX_MAP_HEIGHT = 12
-
-class Board
-  attr_reader :height, :width
+module Wl4x  
+  HEX_MAP_WIDTH  = 13
+  HEX_MAP_HEIGHT = 12
   
-  def initialize
-    @height = HEX_MAP_HEIGHT
-    @width  = HEX_MAP_WIDTH
+  class Board
+    attr_reader :height, :width
     
-    @playing_pieces = []
-    
-    initialize_system_markers
-  end
-  
-  def get_hex(row, col)
-    if !valid_coordinates?(row, col)
-      raise ArgumentError.new("Invalid coordinates!")
+    def initialize
+      @height = HEX_MAP_HEIGHT
+      @width  = HEX_MAP_WIDTH
+      
+      @playing_pieces = []
+      
+      initialize_system_markers
     end
     
-    hex = []
-    
-    @playing_pieces.each do |piece|
-      if (piece.row == row) and (piece.col == col)
-        hex.push(piece)
+    def get_hex(row, col)
+      if !valid_coordinates?(row, col)
+        raise ArgumentError.new("Invalid coordinates!")
       end
+      
+      hex = []
+      
+      @playing_pieces.each do |piece|
+        if (piece.row == row) and (piece.col == col)
+          hex.push(piece)
+        end
+      end
+      
+      hex
     end
     
-    hex
-  end
-  
-private 
-  def valid_coordinates?(row, col)
-    if row.odd? and col == @width-1
-      return false
-    elsif row < 0 or col < 0
-      return false
-    elsif row < @height and col < @width
-      return true
+  private 
+    def valid_coordinates?(row, col)
+      if row.odd? and col == @width-1
+        return false
+      elsif row < 0 or col < 0
+        return false
+      elsif row < @height and col < @width
+        return true
+      end
+      
+      false
     end
     
-    false
-  end
-  
-  def initialize_system_markers
-    (@height-1).times do |row|
-      (@width-1).times do |col|
-        if !(row.odd? and col == @width-1)
-          if get_hex(row, col).empty?
-            @playing_pieces.push(SystemMarker.new(row, col))
+    def initialize_system_markers
+      (@height-1).times do |row|
+        (@width-1).times do |col|
+          if !(row.odd? and col == @width-1)
+            if get_hex(row, col).empty?
+              @playing_pieces.push(SystemMarker.new(row, col))
+            end
           end
         end
       end
